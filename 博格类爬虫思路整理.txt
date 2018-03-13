@@ -1,0 +1,33 @@
+爬虫项目开发第一步，首先需要对我们想要实现的爬虫项目的功能进行定位和分析
+该项目中，我们需要建立一个爬虫，实现以下功能：
+1、爬取博格中任意一个用户的所有博文信息
+2、将博文的文章名，文章url，文章点击数量，文章评论数等信息提取出来
+3、将提取出来的文章名，文章url，文章点击数量，文章评论数等信息自动写入MySql数据库库中
+
+分析难点：
+1、如何提取文章点击数，文章评论数等信息
+2、如何通过循环爬取某个用户的所有博文信息
+3、pipelines.py 中对信息的进一步处理
+4、urllib与scrapy 的配合使用
+5、xpath表达式与正则表达式的配合使用
+6、在scrapy中模拟浏览器进行爬取
+
+
+先创建一个数据表，使用sql语句创建myhexun数据表；
+然后使用scrapy startproject 项目名 创建一个爬虫框架
+修改items.py文件
+修改pipelines.py文件
+修改setting.py文件
+创建爬虫，使用cmd命令行
+编写爬虫，实现网页的爬取
+
+
+GET /linkclick.aspx?blogid=19020056&articleids=111757611-111741870-111699309-111682931-111667053-111651358-111626307-111595373-111580691-111565747-111757611-111741870-111699309-111682931-111667053-111651358-111626307-111595373-111580691-111565747 HTTP/1.1
+Host: click.tool.hexun.com
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36
+Accept: */*
+Referer: http://fjrs168.blog.hexun.com/
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __jsluid=4922629cefc8eb6e72de9d64d18eefd4; HexunTrack=SID=20180313202510074f2af95fb8b6d4a8da65a558b7d564b73&CITY=33&TOWN=330100; vjuids=12ed1f9a4.1621f6009f7.0.d1fc931deb4c; vjlast=1520944810.1520944810.30; UM_distinctid=1621f600ad6192-02dbb6bfb48038-3c60460e-232800-1621f600ad786d; cn_1263247791_dplus=%7B%22distinct_id%22%3A%20%221621f600ad6192-02dbb6bfb48038-3c60460e-232800-1621f600ad786d%22%2C%22sp%22%3A%20%7B%22userFirstDate%22%3A%20%2220180313%22%2C%22userID%22%3A%20%22%22%2C%22userName%22%3A%20%22%22%2C%22userType%22%3A%20%22nologinuser%22%2C%22userLoginDate%22%3A%20%2220180313%22%2C%22%24_sessionid%22%3A%200%2C%22%24_sessionTime%22%3A%201520945722%2C%22%24dp%22%3A%200%2C%22%24_sessionPVTime%22%3A%201520945722%7D%7D
