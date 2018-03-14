@@ -38,7 +38,7 @@ class HexunpjtPipeline(object):
 
     def __init__(self):
         #刚开始时连接对应数据库
-        self.conn=pymysql.connect(host="127.0.0.1", user="root", passwd="root", db="hexun")
+        self.conn=pymysql.connect(host="127.0.0.1", user="root", passwd="root", port=3306, db="hexun")
 
     def process_item(self, item, spider):
         #每一个博文列表页中包含多篇博文的信息，我们可以通过for循环一次处理各博文的信息
@@ -48,10 +48,11 @@ class HexunpjtPipeline(object):
             url=item["url"][j]
             hits=item["hits"][j]
             comment=item["comment"][j]
+            cur = self.conn.cursor()
             #构造对应的sql语句，实现将获取到的对应数据插入数据库中
             sql="insert into myhexun(name,url,hits,comment) VALUES('"+name+"','"+url+"','"+hits+"','"+comment+"')"
             #通过query实现执行对应的sql语句
-            self.conn.query(sql)
+            cur.execute(sql)
         return item
 
 
