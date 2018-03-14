@@ -71,6 +71,7 @@ class MyhexunspdSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        list= response
         item = HexunpjtItem()
         item['name']=response.xpath("//span[@class='ArticleTitleText']/a/text()").extract()
         item["url"]=response.xpath("//span[@class='ArticleTitleText']/a/@href").extract()
